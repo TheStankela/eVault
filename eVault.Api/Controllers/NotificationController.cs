@@ -3,6 +3,7 @@ using eVault.Api.Models;
 using eVault.Application.Mediator.Notifications;
 using eVault.Domain.Models;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eVault.Api.Controllers
@@ -18,6 +19,7 @@ namespace eVault.Api.Controllers
             _sender = sender;
             _mapper = mapper;
         }
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAllNotifications()
         {
