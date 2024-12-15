@@ -21,10 +21,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Context\" />
     <Folder Include="Migrations\" />
-    <Folder Include="Entities\" />
     <Folder Include="Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\eVault.Domain\eVault.Domain.csproj" />
   </ItemGroup>
 
 </Project>
