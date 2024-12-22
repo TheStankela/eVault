@@ -12,6 +12,8 @@ public static class ResultExtensions
             ResultType.NotFound => new NotFoundObjectResult(result),
             ResultType.Failure => new BadRequestObjectResult(result),
             ResultType.Conflict => new ConflictObjectResult(result),
+            ResultType.Unauthorized => new UnauthorizedObjectResult(result),
+            ResultType.Forbidden => new ForbidResult(),
             _ => new StatusCodeResult(500),
         };
     }
@@ -36,6 +38,10 @@ public static class ResultExtensions
                 return Result<U?>.Failure(result?.Error);
             case ResultType.Conflict:
                 return Result<U?>.Conflict(result?.Error);
+            case ResultType.Unauthorized:
+                return Result<U?>.Unauthorized(result?.Error);
+            case ResultType.Forbidden:
+                return Result<U?>.Forbidden(result?.Error);
         }
 
         return Result<U?>.Failure(new Error("Internal server error", "CRITSYSF"));

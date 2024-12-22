@@ -19,13 +19,11 @@ namespace eVault.Api.Controllers
             _sender = sender;
             _mapper = mapper;
         }
+
         [Authorize]
         [HttpGet("current")]
-        public async Task<IActionResult> GetCurrentUser()
-        {
-            var res = await _sender.Send(new GetCurrentUserQuery());
-
-            return Ok(_mapper.Map<UserDto>(res));
-        }
+        public Task<IActionResult> GetCurrentUser() =>
+            _sender.Send(new GetCurrentUserQuery())
+            .ToObjectResult();
     }
 }

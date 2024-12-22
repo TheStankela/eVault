@@ -1,15 +1,16 @@
 ﻿using AutoMapper;
 using eVault.Domain.Interfaces.Service;
 using eVault.Domain.Models;
+using eVault.Domain.ResultWrapper;
 using eVault.Infrastructure.Context;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace eVault.Application.Mediator.Users
 {
-    public record GetCurrentUserQuery : IRequest<User>;
+    public record GetCurrentUserQuery : IRequest<Result<User>>;
 
-    internal class GetCurrentUserHandler : IRequestHandler<GetCurrentUserQuery, User>
+    internal class GetCurrentUserHandler : IRequestHandler<GetCurrentUserQuery, Result<User>>
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
@@ -21,13 +22,16 @@ namespace eVault.Application.Mediator.Users
             _userStore = userStore;
         }
 
-        public async Task<User> Handle(GetCurrentUserQuery request, CancellationToken cancellationToken)
+        public async Task<Result<User>> Handle(GetCurrentUserQuery request, CancellationToken cancellationToken)
         {
             var currentUserId = _userStore.CurrentUserId;
             
             var userDb = await _dbContext.Users.FirstOrDefaultAsync(_ => _.Id == currentUserId);
 
-            return _mapper.Map<User>(userDb);
+            if (userDb == null)
+                return Result<User>.Unauthorized(new Error("Please log in to your account.", "Unauthorized"));
+
+            return Result<User>.Success(_mapper.Map<User>(userDb));
         }
     }
 }

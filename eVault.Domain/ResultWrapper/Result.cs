@@ -31,6 +31,8 @@ namespace eVault.Domain.ResultWrapper
         public static Result<T> NotFound(Error error) => new Result<T>(error, ResultWrapper.ResultType.NotFound, HttpStatusCode.NotFound);
         public static Result<T> BadRequest(Error error) => new Result<T>(error, ResultWrapper.ResultType.BadRequest, HttpStatusCode.BadRequest);
         public static Result<T> Conflict(Error error) => new Result<T>(error, ResultWrapper.ResultType.Conflict, HttpStatusCode.Conflict);
+        public static Result<T> Unauthorized(Error error) => new Result<T>(error, ResultWrapper.ResultType.Unauthorized, HttpStatusCode.Unauthorized);
+        public static Result<T> Forbidden(Error error) => new Result<T>(error, ResultWrapper.ResultType.Forbidden, HttpStatusCode.Forbidden);
     }
 
     public enum ResultType
@@ -40,6 +42,8 @@ namespace eVault.Domain.ResultWrapper
         Failure = 2,
         NotFound = 3,
         BadRequest = 4,
-        Conflict = 5
+        Conflict = 5,
+        Unauthorized = 6,
+        Forbidden = 7
     }
 }
