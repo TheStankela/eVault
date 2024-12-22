@@ -29,9 +29,19 @@ builder.Services.AddDbContext<ApplicationDbContext>(
 
 builder.Services.AddAutoMapper(typeof(ApiMappingProfile).Assembly);
 
+builder.Services.AddCors(opts =>
+{
+    opts.AddDefaultPolicy(_ => _.WithOrigins("localhost:4200", "http://localhost:4200")
+                                .AllowAnyHeader()
+                                .AllowAnyMethod()
+                                .AllowCredentials());
+});
+
 var app = builder.Build();
 
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 app.MapIdentityApi<User>();
 

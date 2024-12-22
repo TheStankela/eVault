@@ -7,8 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Interfaces\Service\" />
     <Folder Include="Interfaces\Repository\" />
   </ItemGroup>
 

@@ -9,6 +9,9 @@ namespace eVault.Api
         {
             CreateMap<NotificationDto, Domain.Models.Notification>();
             CreateMap<NotificationDto, Domain.Models.Notification>().ReverseMap();
+
+            CreateMap<UserDto, Domain.Models.User>();
+            CreateMap<UserDto, Domain.Models.User>().ReverseMap();
         }
     }
 }

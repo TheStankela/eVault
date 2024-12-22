@@ -8,6 +8,9 @@ namespace eVault.Application
         {
             CreateMap<Domain.Models.Notification, Infrastructure.Entities.Notification>();
             CreateMap<Domain.Models.Notification, Infrastructure.Entities.Notification>().ReverseMap();
+
+            CreateMap<Domain.Models.User, Infrastructure.Entities.User>();
+            CreateMap<Domain.Models.User, Infrastructure.Entities.User>().ReverseMap();
         }
     }
 }

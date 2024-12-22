@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using eVault.Domain.Interfaces.Service;
+using eVault.Infrastructure.Repositories;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace eVault.Infrastructure
 {
@@ -6,6 +8,7 @@ namespace eVault.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
+            services.AddScoped<IUserStore, UserStore>();
             return services;
         }
     }
