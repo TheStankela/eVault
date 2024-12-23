@@ -9,6 +9,8 @@ namespace eVault.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             services.AddScoped<IUserStore, UserStore>();
+            services.AddScoped<IUserStoreFactory, UserStoreFactory>();
+
             return services;
         }
     }

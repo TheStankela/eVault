@@ -24,12 +24,12 @@ namespace eVault.Application.Mediator.Users
 
         public async Task<Result<User>> Handle(GetCurrentUserQuery request, CancellationToken cancellationToken)
         {
-            var currentUserId = _userStore.CurrentUserId;
+            var currentUserId = _userStore.CurrentUserId.ToString();
             
             var userDb = await _dbContext.Users.FirstOrDefaultAsync(_ => _.Id == currentUserId);
 
             if (userDb == null)
-                return Result<User>.Unauthorized(new Error("Please log in to your account.", "Unauthorized"));
+                return Result<User>.Unauthorized();
 
             return Result<User>.Success(_mapper.Map<User>(userDb));
         }

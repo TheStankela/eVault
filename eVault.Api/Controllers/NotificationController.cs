@@ -19,20 +19,21 @@ namespace eVault.Api.Controllers
             _sender = sender;
             _mapper = mapper;
         }
-
+       
         [HttpGet]
         public Task<IActionResult> GetAllNotifications() =>
             _sender.Send(new GetAllNotificationsQuery())
             .Map(notifications => _mapper.Map<IEnumerable<NotificationDto>>(notifications))
             .ToObjectResult();
 
+        [Authorize]
         [HttpPost]
-        public async Task<IActionResult> AddNotification(NotificationDto notificationDto)
-        {
-            var res = await _sender.Send(new AddNotificationCommand(_mapper.Map<Notification>(notificationDto)));
+        public Task<IActionResult> AddNotification(NotificationDto notificationDto) => 
+            _sender.Send(new AddNotificationCommand(_mapper.Map<Notification>(notificationDto)))
+            .Map(notifications => _mapper.Map<NotificationDto>(notifications))
+            .ToObjectResult();
 
-            return Ok(res);
-        }
+        [Authorize]
         [HttpPut]
         public async Task<IActionResult> UpdateNotification(NotificationDto notificationDto)
         {

@@ -2,6 +2,6 @@
 {
     public interface IUserStore
     {
-        public string CurrentUserId { get; set; }
+        public Guid CurrentUserId { get; set; }
     }
 }
