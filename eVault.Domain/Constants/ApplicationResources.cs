@@ -1,4 +1,6 @@
-﻿namespace eVault.Domain.Constants
+﻿using eVault.Domain.Models;
+
+namespace eVault.Domain.Constants
 {
     public static class ApplicationResources
     {
@@ -55,6 +57,19 @@
         #endregion
 
         public const string ErrorSavingChanges = "There was an error while saving changes.";
+
+
+        #region Interceptors
+        public static List<string> IgnoredAuditProperties = new List<string>()
+                    {
+                        nameof(IAuditableEntity.Id),
+                        nameof(IAuditableEntity.CreatedBy),
+                        nameof(IAuditableEntity.CreatedOn),
+                        nameof(IAuditableEntity.UpdatedBy),
+                        nameof(IAuditableEntity.UpdatedOn),
+                        nameof(IAuditableEntity.IsActive),
+                    };
+        #endregion
 
     }
 }

@@ -3,6 +3,7 @@ using eVault.Application;
 using eVault.Infrastructure;
 using eVault.Infrastructure.Context;
 using eVault.Infrastructure.Entities;
+using eVault.Infrastructure.Interceptors;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,8 +25,9 @@ builder.Services.AddIdentityCore<User>()
     .AddApiEndpoints();
 
 builder.Services.AddDbContext<ApplicationDbContext>(
-    opts => opts.UseSqlServer(builder.Configuration.GetConnectionString("eVaultConnection")
-));
+    opts => opts.UseSqlServer(builder.Configuration.GetConnectionString("eVaultConnection"))
+    .AddInterceptors(new AuditInterceptor())
+);
 
 builder.Services.AddAutoMapper(typeof(ApiMappingProfile).Assembly);
 
