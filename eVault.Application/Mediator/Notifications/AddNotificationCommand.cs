@@ -3,12 +3,13 @@ using eVault.Domain.Constants;
 using eVault.Domain.Models;
 using eVault.Domain.ResultWrapper;
 using eVault.Infrastructure.Context;
+using eVault.Infrastructure.Extensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace eVault.Application.Mediator.Notifications
 {
-    public record AddNotificationCommand(Domain.Models.Notification Notification) : IRequest<Result<Notification>>;
+    public record AddNotificationCommand(Notification Notification) : IRequest<Result<Notification>>;
 
     internal class AddNotificationCommandHandler : IRequestHandler<AddNotificationCommand, Result<Notification>>
     {
@@ -21,7 +22,9 @@ namespace eVault.Application.Mediator.Notifications
         }
         public async Task<Result<Notification>> Handle(AddNotificationCommand request, CancellationToken cancellationToken)
         {
-            var notificationExists = await _dbContext.Notifications.FirstOrDefaultAsync(_ => _.Id == request.Notification.Id);
+            var notificationExists = await _dbContext.Notifications
+                .Active()
+                .FirstOrDefaultAsync(_ => _.Id == request.Notification.Id);
 
             if (notificationExists != null)
                 return Result<Notification>.Conflict(ApplicationResources.GetResourceExistsString(nameof(Notification)));

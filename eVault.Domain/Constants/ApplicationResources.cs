@@ -70,6 +70,5 @@ namespace eVault.Domain.Constants
                         nameof(IAuditableEntity.IsActive),
                     };
         #endregion
-
     }
 }

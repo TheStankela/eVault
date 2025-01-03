@@ -1,5 +1,4 @@
-﻿using System.Reflection.Emit;
-using eVault.Domain.Interfaces.Service;
+﻿using eVault.Domain.Interfaces.Service;
 using eVault.Infrastructure.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -18,14 +17,6 @@ namespace eVault.Infrastructure.Context
 
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<AuditEntry> Audit { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-
-            builder.Entity<Domain.Models.IBaseEntity>()
-            .HasQueryFilter(e => !e.IsActive);
-        }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

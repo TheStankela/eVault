@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using eVault.Infrastructure.Context;
-using eVault.Infrastructure.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

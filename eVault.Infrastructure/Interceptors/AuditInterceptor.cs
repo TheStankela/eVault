@@ -5,7 +5,6 @@ using eVault.Domain.Enums;
 using eVault.Domain.Models;
 using eVault.Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace eVault.Infrastructure.Interceptors
@@ -59,7 +58,6 @@ namespace eVault.Infrastructure.Interceptors
                     if(entry.State == EntityState.Added)
                         entry.Entity.IsActive = true;
                     
-
                     if (entry.State == EntityState.Deleted)
                     {
                         entry.State = EntityState.Modified;

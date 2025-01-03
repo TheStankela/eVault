@@ -1,5 +1,4 @@
-﻿using System.Net;
-using eVault.Domain.Constants;
+﻿using eVault.Domain.Constants;
 using eVault.Domain.ResultWrapper;
 using Microsoft.AspNetCore.Mvc;
 

@@ -41,5 +41,11 @@ namespace eVault.Api.Controllers
 
             return Ok(res);
         }
+
+        [Authorize]
+        [HttpDelete("{notificationId}")]
+        public Task<IActionResult> DeleteNotification(Guid notificationId) =>
+            _sender.Send(new DeleteNotificationCommand(notificationId))
+            .ToObjectResult();
     }
 }

@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
-using eVault.Api.Models;
 using eVault.Application.Mediator.Users;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eVault.Api.Controllers

@@ -1,8 +1,7 @@
-﻿using FluentValidation;
+﻿using System.Security.Principal;
+using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using System.Security.Principal;
 
 namespace eVault.Application
 {
