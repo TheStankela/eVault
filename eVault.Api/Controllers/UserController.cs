@@ -11,7 +11,9 @@ namespace eVault.Api.Controllers
     public class UserController : ControllerBase
     {
         private readonly ISender _sender;
+
         private readonly IMapper _mapper;
+
         public UserController(ISender sender, IMapper mapper)
         {
             _sender = sender;

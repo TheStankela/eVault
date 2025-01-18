@@ -1,9 +1,8 @@
 ﻿using System.Text.Json;
 using eVault.Domain.Attributes;
-using eVault.Domain.Constants;
 using eVault.Domain.Enums;
-using eVault.Domain.Models;
 using eVault.Infrastructure.Entities;
+using eVault.Infrastructure.Resources;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
@@ -66,7 +65,7 @@ namespace eVault.Infrastructure.Interceptors
 
                     foreach (var property in entry.Properties)
                     {
-                        if(ApplicationResources.IgnoredAuditProperties.Contains(property.Metadata.Name))
+                        if(DatabaseResources.IgnoredAuditProperties.Contains(property.Metadata.Name))
                             continue;
 
                         if (auditEntry.Operation == DatabaseOperation.Update && string.Equals(property.OriginalValue?.ToString(), property.CurrentValue?.ToString()))

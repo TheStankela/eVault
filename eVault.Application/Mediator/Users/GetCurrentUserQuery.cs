@@ -24,7 +24,7 @@ namespace eVault.Application.Mediator.Users
 
         public async Task<Result<User>> Handle(GetCurrentUserQuery request, CancellationToken cancellationToken)
         {
-            var currentUserId = _userStore.CurrentUserId.ToString();
+            var currentUserId = _userStore.CurrentUserId;
             
             var userDb = await _dbContext.Users.FirstOrDefaultAsync(_ => _.Id == currentUserId);
 

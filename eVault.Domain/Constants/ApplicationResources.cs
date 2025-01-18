@@ -42,7 +42,6 @@ namespace eVault.Domain.Constants
 
         #region Generic Response Methods
 
-
         public static string GetSuccessfullySavedString(string resourceName) => $"{resourceName} was saved successfully.";
 
         public static string GetSuccessfullyDeletedString(string resourceName) => $"{resourceName} was deleted successfully.";
@@ -53,22 +52,8 @@ namespace eVault.Domain.Constants
 
         public static string GetResourceExistsString(string resourceName) => $"{resourceName} already exists in the system.";
 
-
         #endregion
 
         public const string ErrorSavingChanges = "There was an error while saving changes.";
-
-
-        #region Interceptors
-        public static List<string> IgnoredAuditProperties = new List<string>()
-                    {
-                        nameof(IAuditableEntity.Id),
-                        nameof(IAuditableEntity.CreatedBy),
-                        nameof(IAuditableEntity.CreatedOn),
-                        nameof(IAuditableEntity.UpdatedBy),
-                        nameof(IAuditableEntity.UpdatedOn),
-                        nameof(IAuditableEntity.IsActive),
-                    };
-        #endregion
     }
 }

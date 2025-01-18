@@ -13,6 +13,7 @@ namespace eVault.Api.Controllers
     public class NotificationController : ControllerBase
     {
         private readonly ISender _sender;
+
         private readonly IMapper _mapper;
         public NotificationController(ISender sender, IMapper mapper)
         {

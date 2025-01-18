@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace eVault.Domain.Models
+namespace eVault.Infrastructure.Entities
 {
     public abstract class BaseEntity : IBaseEntity
     {

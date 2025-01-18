@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 public static class ResultExtensions
 {
-    public static IActionResult ToObjectResult<T>(this Result<T?> result)
+    public static IActionResult ToObjectResult<T>(this Result<T> result)
     {
         return result.ResultType switch
         {
@@ -19,36 +19,36 @@ public static class ResultExtensions
         };
     }
 
-    public static async Task<IActionResult> ToObjectResult<T>(this Task<Result<T?>> taskResult)
+    public static async Task<IActionResult> ToObjectResult<T>(this Task<Result<T>> taskResult)
     {
         var result = await taskResult.ConfigureAwait(false);
         return result.ToObjectResult();
     }
 
-    public static Result<U?> Map<T, U>(this Result<T?> result, Func<T?, U?> mapFunc)
+    public static Result<U> Map<T, U>(this Result<T> result, Func<T, U> mapFunc)
     {
         switch (result.ResultType)
         {
             case ResultType.Success:
-                return Result<U?>.Success(mapFunc(result.Data));
+                return Result<U>.Success(mapFunc(result.Data));
             case ResultType.BadRequest:
-                return Result<U?>.BadRequest(result?.Error.Message, result?.Error.Code);
+                return Result<U>.BadRequest(result?.Error.Message, result?.Error.Code);
             case ResultType.NotFound:
-                return Result<U?>.NotFound(result?.Error.Message, result?.Error.Code);
+                return Result<U>.NotFound(result?.Error.Message, result?.Error.Code);
             case ResultType.Failure:
-                return Result<U?>.Failure(result?.Error.Message, result?.Error.Code);
+                return Result<U>.Failure(result?.Error.Message, result?.Error.Code);
             case ResultType.Conflict:
-                return Result<U?>.Conflict(result?.Error.Message, result?.Error.Code);
+                return Result<U>.Conflict(result?.Error.Message, result?.Error.Code);
             case ResultType.Unauthorized:
-                return Result<U?>.Unauthorized();
+                return Result<U>.Unauthorized();
             case ResultType.Forbidden:
-                return Result<U?>.Forbidden();
+                return Result<U>.Forbidden();
         }
 
-        return Result<U?>.Failure(code: ApplicationResources.ResultSystemFailure);
+        return Result<U>.Failure(code: ApplicationResources.ResultSystemFailure);
     }
 
-    public static async Task<Result<U?>> Map<T, U>(this Task<Result<T?>> taskResult, Func<T?, U?> mapFunc)
+    public static async Task<Result<U>> Map<T, U>(this Task<Result<T>> taskResult, Func<T, U> mapFunc)
     {
         var result = await taskResult.ConfigureAwait(false);
         return result.Map(mapFunc);

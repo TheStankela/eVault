@@ -1,4 +1,4 @@
-﻿namespace eVault.Domain.Models
+﻿namespace eVault.Infrastructure.Entities
 {
     public interface IAuditableEntity : IBaseEntity
     {
