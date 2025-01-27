@@ -11,6 +11,9 @@ namespace eVault.Application
 
             CreateMap<Domain.Models.User, Infrastructure.Entities.User>();
             CreateMap<Domain.Models.User, Infrastructure.Entities.User>().ReverseMap();
+
+            CreateMap<Domain.Models.Role, Infrastructure.Entities.Role>();
+            CreateMap<Domain.Models.Role, Infrastructure.Entities.Role>().ReverseMap();
         }
     }
 }

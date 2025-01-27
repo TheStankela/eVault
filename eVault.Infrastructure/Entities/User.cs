@@ -4,9 +4,15 @@ using Microsoft.AspNetCore.Identity;
 
 namespace eVault.Infrastructure.Entities
 {
-    [Audit(AuditEntityType.User)]
+    [Audit(eAuditEntityType.User)]
     public class User : IdentityUser<Guid>, IBaseEntity
     {
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string FullName => $"{FirstName + LastName}";
+
         public bool IsActive { get; set; }
 
         public Guid CreatedById { get; set; }

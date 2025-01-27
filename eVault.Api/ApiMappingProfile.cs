@@ -12,6 +12,9 @@ namespace eVault.Api
 
             CreateMap<UserDto, Domain.Models.User>();
             CreateMap<UserDto, Domain.Models.User>().ReverseMap();
+
+            CreateMap<RoleDto, Domain.Models.Role>().ReverseMap();
+            CreateMap<RoleDto, Domain.Models.Role>().ReverseMap();
         }
     }
 }

@@ -4,8 +4,8 @@ namespace eVault.Domain.Attributes
 {
     public class AuditAttribute : Attribute
     {
-        public AuditEntityType EntityType { get; set; }
-        public AuditAttribute(AuditEntityType entityType)
+        public eAuditEntityType EntityType { get; set; }
+        public AuditAttribute(eAuditEntityType entityType)
         {
             EntityType = entityType;
         }

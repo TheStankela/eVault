@@ -1,6 +1,6 @@
 ﻿namespace eVault.Domain.Enums
 {
-    public enum AuditEntityType
+    public enum eAuditEntityType
     {
         NotSet,
         Notification,

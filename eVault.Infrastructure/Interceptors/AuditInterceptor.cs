@@ -47,9 +47,9 @@ namespace eVault.Infrastructure.Interceptors
                         UpdatedOn = DateTime.UtcNow,
                         Operation = entry.State switch
                         {
-                            EntityState.Added => DatabaseOperation.Add,
-                            EntityState.Modified => DatabaseOperation.Update,
-                            EntityState.Deleted => DatabaseOperation.Delete,
+                            EntityState.Added => eDatabaseOperation.Add,
+                            EntityState.Modified => eDatabaseOperation.Update,
+                            EntityState.Deleted => eDatabaseOperation.Delete,
                             _ => throw new NullReferenceException("Entity state cannot be null"),
                         }
                     };
@@ -68,14 +68,14 @@ namespace eVault.Infrastructure.Interceptors
                         if(DatabaseResources.IgnoredAuditProperties.Contains(property.Metadata.Name))
                             continue;
 
-                        if (auditEntry.Operation == DatabaseOperation.Update && string.Equals(property.OriginalValue?.ToString(), property.CurrentValue?.ToString()))
+                        if (auditEntry.Operation == eDatabaseOperation.Update && string.Equals(property.OriginalValue?.ToString(), property.CurrentValue?.ToString()))
                             continue;
 
                         auditEntry.AuditChanges.Add(new AuditEntryChanges
                         {
                             PropertyName = property.Metadata.Name,
-                            OldValue = auditEntry.Operation == DatabaseOperation.Add ? null : property.OriginalValue?.ToString(),
-                            NewValue = auditEntry.Operation == DatabaseOperation.Delete ? null : property.CurrentValue?.ToString()
+                            OldValue = auditEntry.Operation == eDatabaseOperation.Add ? null : property.OriginalValue?.ToString(),
+                            NewValue = auditEntry.Operation == eDatabaseOperation.Delete ? null : property.CurrentValue?.ToString()
                         });
                     }
 

@@ -7,7 +7,7 @@ namespace eVault.Infrastructure.Repositories
 {
     public class UserStore : IUserStore
     {
-        public Guid CurrentUserId { get; set; }
+        public Guid CurrentUserId { get; }
 
         private readonly IHttpContextAccessor _httpContextAccessor;
 

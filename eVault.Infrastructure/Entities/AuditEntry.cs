@@ -11,14 +11,14 @@ namespace eVault.Infrastructure.Entities
 
         public Guid ObjectId { get; set; }
 
-        public AuditEntityType EntityType { get; set; }
+        public eAuditEntityType EntityType { get; set; }
 
         [NotMapped]
         public List<AuditEntryChanges> AuditChanges { get; set; } = new();
 
         public string Changes { get; set; }
 
-        public DatabaseOperation Operation { get; set; }
+        public eDatabaseOperation Operation { get; set; }
 
         public Guid? CreatedById { get; set; }
 

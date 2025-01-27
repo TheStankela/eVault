@@ -1,6 +1,6 @@
 ﻿namespace eVault.Domain.Enums
 {
-    public enum DatabaseOperation
+    public enum eDatabaseOperation
     {
         Add,
         Update,
